@@ -1,0 +1,134 @@
+[
+  {
+    "id": "lk-fullstack-1",
+    "source": "curated-lk",
+    "title": "Full Stack Software Engineer",
+    "company": "Colombo Product Engineering Team",
+    "tags": ["React", "TypeScript", "Node.js", "REST APIs", "SQL"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Full%20Stack%20Software%20Engineer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-frontend-1",
+    "source": "curated-lk",
+    "title": "Frontend Developer",
+    "company": "SaaS Product Company",
+    "tags": ["React", "Next.js", "JavaScript", "CSS", "Tailwind"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Frontend%20Developer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "onsite",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-backend-1",
+    "source": "curated-lk",
+    "title": "Backend Engineer (Java/Spring)",
+    "company": "Enterprise Software Company",
+    "tags": ["Java", "Spring Boot", "Microservices", "SQL", "AWS"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Backend%20Engineer%20Java&location=Sri%20Lanka",
+    "location": "Malabe, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-devops-1",
+    "source": "curated-lk",
+    "title": "DevOps Engineer",
+    "company": "Fintech Startup",
+    "tags": ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=DevOps%20Engineer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-qa-1",
+    "source": "curated-lk",
+    "title": "QA / SDET Engineer",
+    "company": "Enterprise Software Company",
+    "tags": ["Automation Testing", "Selenium", "JavaScript", "API Testing"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=QA%20Automation%20Engineer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "onsite",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-data-1",
+    "source": "curated-lk",
+    "title": "Data Analyst",
+    "company": "Analytics & BI Team",
+    "tags": ["SQL", "Python", "Power BI", "Excel", "Data Visualization"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Data%20Analyst&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-mobile-1",
+    "source": "curated-lk",
+    "title": "Mobile App Developer (Flutter)",
+    "company": "Digital Product Studio",
+    "tags": ["Flutter", "Dart", "Mobile Development", "REST APIs", "Firebase"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Flutter%20Developer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-ml-1",
+    "source": "curated-lk",
+    "title": "Machine Learning Engineer",
+    "company": "AI Products Team",
+    "tags": ["Python", "Machine Learning", "TensorFlow", "PyTorch", "Data Science"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Machine%20Learning%20Engineer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-uiux-1",
+    "source": "curated-lk",
+    "title": "UI/UX Designer",
+    "company": "Digital Product Studio",
+    "tags": ["Figma", "UI Design", "UX Research", "Prototyping"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=UI%20UX%20Designer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "onsite",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-support-1",
+    "source": "curated-lk",
+    "title": "Associate Software Engineer (Graduate Programme)",
+    "company": "Enterprise Software Company",
+    "tags": ["Java", "C#", ".NET", "SQL", "Problem Solving"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Graduate%20Software%20Engineer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "onsite",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-ba-1",
+    "source": "curated-lk",
+    "title": "Business / Systems Analyst",
+    "company": "Enterprise Software Company",
+    "tags": ["Requirements Analysis", "SQL", "Agile", "Documentation"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Business%20Analyst%20IT&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  },
+  {
+    "id": "lk-fullstack-2",
+    "source": "curated-lk",
+    "title": "Software Engineer (Python/Django)",
+    "company": "Startup Product Team",
+    "tags": ["Python", "Django", "PostgreSQL", "REST APIs", "Docker"],
+    "url": "https://www.linkedin.com/jobs/search/?keywords=Python%20Django%20Developer&location=Sri%20Lanka",
+    "location": "Colombo, Sri Lanka",
+    "workMode": "hybrid",
+    "postedAt": "sample"
+  }
+]
