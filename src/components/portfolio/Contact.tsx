@@ -1,9 +1,11 @@
 import { profile } from "@/data/profile";
+import { RocCurveMotif } from "./RocCurveMotif";
 
 export function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
-      <div className="card flex flex-col items-start gap-4 p-8 sm:p-10">
+      <div className="card relative flex flex-col items-start gap-4 overflow-hidden p-8 sm:p-10">
+        <RocCurveMotif />
         <h2 className="label">Contact</h2>
         <p className="max-w-xl text-2xl font-semibold tracking-tight sm:text-3xl">
           Let&apos;s work together — reach out anytime.
