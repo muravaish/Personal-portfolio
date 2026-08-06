@@ -105,12 +105,13 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/muravaish/customer-churn-ai-intelligence-platform",
   },
   {
-    id: "project-three",
-    title: "Third Project",
-    description: "Short description of what it does and why it's interesting.",
-    tags: ["Add", "Tech", "Tags"],
-    url: "",
-    repoUrl: "",
+    id: "autonomous-data-analyst-agent",
+    title: "Autonomous Data Analyst + Decision Intelligence Agent",
+    description:
+      "An agentic AI data analyst built with LangGraph that turns plain-English business questions into validated SQL, runs it against relational or uploaded CSV data, and returns grounded insights, auto-selected charts, and business recommendations — backed by an evaluation harness measuring SQL accuracy and faithfulness (27/30 combined execution accuracy, 30/30 faithful insights).",
+    tags: ["Python", "LangGraph", "Gemini", "Streamlit", "SQL", "Docker"],
+    url: "https://autonomous-data-analyst-agent-8zsmr9ii5bsfxnshu37ykd.streamlit.app/",
+    repoUrl: "https://github.com/muravaish/autonomous-data-analyst-agent",
   },
 ];
 
