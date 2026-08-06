@@ -8,8 +8,16 @@ export function Projects() {
         {projects.map((p) => (
           <div
             key={p.id}
-            className={`card flex flex-col gap-3 p-6 ${p.highlight ? "sm:col-span-2 border-accent/30" : ""}`}
+            className={`card flex flex-col gap-3 overflow-hidden p-6 ${p.highlight ? "sm:col-span-2 border-accent/30" : ""}`}
           >
+            {p.imageUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={p.imageUrl}
+                alt={`${p.title} preview`}
+                className="-m-6 mb-0 aspect-video w-[calc(100%+3rem)] object-cover object-top"
+              />
+            )}
             <h3 className="text-lg font-semibold">{p.title}</h3>
             <p className="text-sm leading-relaxed text-muted">{p.description}</p>
             <div className="flex flex-wrap gap-2 pt-1">

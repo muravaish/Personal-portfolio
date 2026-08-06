@@ -147,37 +147,56 @@ export function PortfolioContentView() {
     setDraft((d) => ({ ...d, certifications: d.certifications.filter((c) => c.id !== id) }));
   }
 
-  async function uploadCertificationImage(cert: Certification, file: File) {
-    setUploadErrors((prev) => ({ ...prev, [cert.id]: "" }));
+  async function uploadAssetImage(
+    id: string,
+    title: string,
+    file: File,
+    subdir: string,
+    onSuccess: (publicPath: string) => void,
+  ) {
+    setUploadErrors((prev) => ({ ...prev, [id]: "" }));
     if (!settings.githubPublishToken) {
-      setUploadErrors((prev) => ({ ...prev, [cert.id]: "Add a GitHub token in Settings first." }));
+      setUploadErrors((prev) => ({ ...prev, [id]: "Add a GitHub token in Settings first." }));
       return;
     }
-    setUploadingId(cert.id);
+    setUploadingId(id);
     try {
       const base64 = await readFileAsBase64(file);
       const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
-      const filename = `${cert.id}${ext}`;
+      const filename = `${id}${ext}`;
       const res = await publishPublicAsset(
         settings.githubPublishToken,
         settings.githubPublishBranch || "main",
+        subdir,
         filename,
         base64,
-        `Add certificate image for ${cert.title}`,
+        `Add ${subdir.slice(0, -1)} image for ${title}`,
       );
       if (res.success && res.publicPath) {
-        updateCertification(cert.id, { imageUrl: res.publicPath });
+        onSuccess(res.publicPath);
       } else {
-        setUploadErrors((prev) => ({ ...prev, [cert.id]: res.error || "Upload failed." }));
+        setUploadErrors((prev) => ({ ...prev, [id]: res.error || "Upload failed." }));
       }
     } catch (e) {
       setUploadErrors((prev) => ({
         ...prev,
-        [cert.id]: e instanceof Error ? e.message : "Upload failed.",
+        [id]: e instanceof Error ? e.message : "Upload failed.",
       }));
     } finally {
       setUploadingId(null);
     }
+  }
+
+  function uploadCertificationImage(cert: Certification, file: File) {
+    return uploadAssetImage(cert.id, cert.title, file, "certifications", (imageUrl) =>
+      updateCertification(cert.id, { imageUrl }),
+    );
+  }
+
+  function uploadProjectImage(project: Project, file: File) {
+    return uploadAssetImage(project.id, project.title, file, "projects", (imageUrl) =>
+      updateProject(project.id, { imageUrl }),
+    );
   }
 
   async function publish() {
@@ -398,6 +417,36 @@ export function PortfolioContentView() {
               />
               Highlight (spans full width)
             </label>
+            <div className="flex flex-wrap items-center gap-3">
+              {p.imageUrl && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={p.imageUrl} alt={`${p.title} preview`} className="h-16 w-28 rounded object-cover" />
+              )}
+              <label className="btn-ghost cursor-pointer text-xs">
+                {uploadingId === p.id ? "Uploading…" : p.imageUrl ? "Replace image" : "Upload project image"}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  disabled={uploadingId === p.id}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    e.target.value = "";
+                    if (file) uploadProjectImage(p, file);
+                  }}
+                />
+              </label>
+              {p.imageUrl && (
+                <button
+                  type="button"
+                  className="text-xs text-danger hover:underline"
+                  onClick={() => updateProject(p.id, { imageUrl: undefined })}
+                >
+                  Remove image
+                </button>
+              )}
+              {uploadErrors[p.id] && <span className="text-xs text-danger">{uploadErrors[p.id]}</span>}
+            </div>
           </div>
         ))}
         {draft.projects.length === 0 && <p className="text-xs text-muted">No projects yet.</p>}

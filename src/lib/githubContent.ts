@@ -86,12 +86,13 @@ export async function publishProfileFile(
 export async function publishPublicAsset(
   token: string,
   branch: string,
+  subdir: string,
   filename: string,
   base64Content: string,
   message: string,
 ): Promise<PublishResult & { publicPath?: string }> {
-  const path = `public/certifications/${filename}`;
+  const path = `public/${subdir}/${filename}`;
   const result = await commitFile(token, branch, path, base64Content, message);
   if (!result.success) return result;
-  return { ...result, publicPath: `/certifications/${filename}` };
+  return { ...result, publicPath: `/${subdir}/${filename}` };
 }

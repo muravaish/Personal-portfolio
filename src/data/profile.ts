@@ -99,6 +99,7 @@ export interface Project {
   url?: string;
   repoUrl?: string;
   highlight?: boolean;
+  imageUrl?: string;
 }
 
 export const projects: Project[] = [
