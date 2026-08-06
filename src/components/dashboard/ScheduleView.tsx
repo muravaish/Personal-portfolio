@@ -117,13 +117,13 @@ export function ScheduleView() {
             <p className="text-xs text-muted">No goals yet — add what you&apos;re building toward for your target job.</p>
           )}
           {skillGoals.map((g) => (
-            <div key={g.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-white/[0.03] p-3">
+            <div key={g.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-[var(--overlay-soft)] p-3">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium">{g.title}</span>
                   <span className="badge text-muted">{g.priority}</span>
                 </div>
-                <div className="mt-1 h-1.5 w-40 overflow-hidden rounded-full bg-white/10">
+                <div className="mt-1 h-1.5 w-40 overflow-hidden rounded-full bg-[var(--overlay-soft-hover)]">
                   <div
                     className="h-full bg-accent"
                     style={{ width: `${Math.min(100, (g.hoursLogged / g.estimatedHours) * 100)}%` }}

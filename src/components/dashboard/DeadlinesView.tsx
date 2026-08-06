@@ -143,7 +143,7 @@ export function DeadlinesView() {
             Copy the activity title and the &quot;Opens / Due&quot; lines straight off the module page and paste
             them below — e.g.:
           </p>
-          <pre className="rounded-lg bg-white/5 p-3 text-xs text-muted">
+          <pre className="rounded-lg bg-[var(--overlay-soft)] p-3 text-xs text-muted">
 {`Kandy Uni - Lab 2 Submission
 Opens: Sunday, 9 August 2026, 8:00 AM
 Due: Tuesday, 11 August 2026, 12:00 PM`}

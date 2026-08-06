@@ -158,7 +158,7 @@ export function SettingsView() {
               type="button"
               onClick={() => toggleDay(i)}
               className={`rounded-lg px-3 py-1.5 text-xs font-medium ${
-                settings.workDays.includes(i) ? "bg-accent/20 text-foreground" : "bg-white/5 text-muted"
+                settings.workDays.includes(i) ? "bg-accent/20 text-foreground" : "bg-[var(--overlay-soft)] text-muted"
               }`}
             >
               {label}

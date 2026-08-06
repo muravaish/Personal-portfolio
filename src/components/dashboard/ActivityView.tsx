@@ -213,7 +213,7 @@ export function ActivityView() {
             return (
               <div key={row.date} className="flex items-center gap-3 text-xs">
                 <span className="w-20 shrink-0 text-muted">{format(new Date(row.date), "EEE MMM d")}</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-[var(--overlay-soft-hover)]">
                   <div className="h-full bg-accent" style={{ width: `${pct}%` }} />
                 </div>
                 <span className="w-24 shrink-0 text-right text-muted">

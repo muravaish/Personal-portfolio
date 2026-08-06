@@ -28,7 +28,7 @@ export function DashboardNav() {
             className={`flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
               active
                 ? "bg-accent/15 text-foreground font-medium"
-                : "text-muted hover:bg-white/5 hover:text-foreground"
+                : "text-muted hover:bg-[var(--overlay-soft-hover)] hover:text-foreground"
             }`}
           >
             <span aria-hidden>{l.icon}</span>

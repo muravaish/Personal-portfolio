@@ -149,7 +149,7 @@ export function JobsView() {
       <p className="text-xs text-muted">
         Remote listings are live from RemoteOK. Sri Lanka onsite/hybrid entries are a small curated sample (no free
         public API exists for local job boards) — edit{" "}
-        <code className="rounded bg-white/10 px-1">src/data/local-jobs-lk.json</code> to refresh them, or swap in a
+        <code className="rounded bg-[var(--overlay-soft-hover)] px-1">src/data/local-jobs-lk.json</code> to refresh them, or swap in a
         real feed later.
       </p>
 

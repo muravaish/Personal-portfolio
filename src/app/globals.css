@@ -22,33 +22,6 @@
   color-scheme: light;
 }
 
-/* Command Center keeps its original dark "control room" identity — a deliberate
-   contrast with the light public site, not an oversight. Scoping the theme
-   tokens here means every dashboard component (which already leans on
-   bg-white/X overlays tuned for a dark surface) needs zero changes. */
-.dashboard-scope {
-  --background: #0b0a08;
-  --surface: #14120d;
-  --foreground: #f2ede2;
-  --muted: #9c9486;
-  --accent: #c98a3e;
-  --accent-strong: #f4b855;
-  --accent-from: #ff8659;
-  --accent-to: #ffd166;
-  --border: rgba(242, 237, 226, 0.1);
-  --overlay-soft: rgba(242, 237, 226, 0.03);
-  --overlay-soft-hover: rgba(242, 237, 226, 0.07);
-  --overlay-border-hover: rgba(242, 237, 226, 0.2);
-  --card-shadow: none;
-  --selection-tint: rgba(244, 184, 85, 0.3);
-  --danger: #f0776a;
-  --warning: #f4b855;
-  --success: #8fbc94;
-  color-scheme: dark;
-  background: var(--background);
-  color: var(--foreground);
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);

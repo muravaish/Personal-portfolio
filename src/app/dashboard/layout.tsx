@@ -4,7 +4,7 @@ import { ReminderBanner } from "@/components/dashboard/ReminderBanner";
 
 export default function DashboardLayout({ children }: LayoutProps<"/dashboard">) {
   return (
-    <div className="dashboard-scope min-h-screen">
+    <div className="min-h-screen">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link href="/" className="text-sm font-semibold tracking-tight">

@@ -327,7 +327,7 @@ export function PortfolioContentView() {
           </button>
         </div>
         {draft.skillCategories.map((cat, i) => (
-          <div key={i} className="rounded-lg bg-white/[0.03] p-4">
+          <div key={i} className="rounded-lg bg-[var(--overlay-soft)] p-4">
             <div className="mb-2 flex items-center gap-2">
               <input
                 className="input"
@@ -356,7 +356,7 @@ export function PortfolioContentView() {
           </button>
         </div>
         {draft.projects.map((p) => (
-          <div key={p.id} className="flex flex-col gap-3 rounded-lg bg-white/[0.03] p-4">
+          <div key={p.id} className="flex flex-col gap-3 rounded-lg bg-[var(--overlay-soft)] p-4">
             <div className="flex items-center justify-between gap-2">
               <input
                 className="input"
@@ -411,7 +411,7 @@ export function PortfolioContentView() {
           </button>
         </div>
         {draft.certifications.map((c) => (
-          <div key={c.id} className="flex flex-col gap-3 rounded-lg bg-white/[0.03] p-4">
+          <div key={c.id} className="flex flex-col gap-3 rounded-lg bg-[var(--overlay-soft)] p-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <input
                 className="input"
