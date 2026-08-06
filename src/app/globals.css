@@ -7,6 +7,8 @@
   --muted: #9c9486;
   --accent: #c98a3e;
   --accent-strong: #f4b855;
+  --accent-from: #ff8659;
+  --accent-to: #ffd166;
   --border: rgba(242, 237, 226, 0.1);
   --danger: #f0776a;
   --warning: #f4b855;
@@ -55,7 +57,10 @@ body {
   }
 
   .gradient-text {
-    color: var(--accent-strong);
+    background-image: linear-gradient(100deg, var(--accent-from), var(--accent-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .btn-primary {
@@ -67,11 +72,11 @@ body {
     font-weight: 600;
     font-size: 0.875rem;
     color: #0b0a08;
-    background: var(--accent-strong);
-    transition: background 0.15s ease, transform 0.15s ease;
+    background-image: linear-gradient(100deg, var(--accent-from), var(--accent-to));
+    transition: opacity 0.15s ease, transform 0.15s ease;
   }
   .btn-primary:hover {
-    background: #ffcb7a;
+    opacity: 0.88;
     transform: translateY(-1px);
   }
 
