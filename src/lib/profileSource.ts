@@ -26,6 +26,13 @@ export interface ProfileBasics {
 
 export const profile: ProfileBasics = ${JSON.stringify(data.profile, null, 2)};
 
+export interface StatHighlight {
+  label: string;
+  value: string;
+}
+
+export const heroStats: StatHighlight[] = ${JSON.stringify(data.heroStats, null, 2)};
+
 export interface SkillCategory {
   label: string;
   skills: string[];
@@ -58,6 +65,7 @@ export const projects: Project[] = ${JSON.stringify(data.projects, null, 2)};
 
 export interface ProfileData {
   profile: ProfileBasics;
+  heroStats: StatHighlight[];
   skillCategories: SkillCategory[];
   certifications: Certification[];
   projects: Project[];

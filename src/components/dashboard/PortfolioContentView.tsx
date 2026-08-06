@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useContentDraft, useSettings, uid } from "@/lib/store";
-import type { Certification, Project, SkillCategory } from "@/data/profile";
+import type { Certification, Project, SkillCategory, StatHighlight } from "@/data/profile";
 import { serializeProfileFile } from "@/lib/profileSource";
 import { publishProfileFile, publishPublicAsset } from "@/lib/githubContent";
 
@@ -93,6 +93,20 @@ export function PortfolioContentView() {
 
   function updateSocial(key: keyof typeof draft.profile.socials, value: string) {
     setDraft((d) => ({ ...d, profile: { ...d.profile, socials: { ...d.profile.socials, [key]: value } } }));
+  }
+
+  function addHeroStat() {
+    const s: StatHighlight = { label: "New Stat", value: "" };
+    setDraft((d) => ({ ...d, heroStats: [...d.heroStats, s] }));
+  }
+  function updateHeroStat(index: number, patch: Partial<StatHighlight>) {
+    setDraft((d) => ({
+      ...d,
+      heroStats: d.heroStats.map((s, i) => (i === index ? { ...s, ...patch } : s)),
+    }));
+  }
+  function removeHeroStat(index: number) {
+    setDraft((d) => ({ ...d, heroStats: d.heroStats.filter((_, i) => i !== index) }));
   }
 
   function addCategory() {
@@ -271,6 +285,38 @@ export function PortfolioContentView() {
             <input className="input mt-1" value={draft.profile.resumeUrl} onChange={(e) => updateProfileField("resumeUrl", e.target.value)} />
           </div>
         </div>
+      </section>
+
+      <section className="card flex flex-col gap-4 p-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-sm font-semibold">Hero Stats</h2>
+            <p className="text-xs text-muted">The real numbers shown in the hero — e.g. a model&apos;s accuracy or an eval score.</p>
+          </div>
+          <button type="button" className="btn-ghost text-xs" onClick={addHeroStat}>
+            + Add stat
+          </button>
+        </div>
+        {draft.heroStats.map((s, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <input
+              className="input"
+              value={s.value}
+              onChange={(e) => updateHeroStat(i, { value: e.target.value })}
+              placeholder="e.g. 84.51%"
+            />
+            <input
+              className="input"
+              value={s.label}
+              onChange={(e) => updateHeroStat(i, { label: e.target.value })}
+              placeholder="e.g. ROC-AUC"
+            />
+            <button type="button" className="text-xs text-danger hover:underline whitespace-nowrap" onClick={() => removeHeroStat(i)}>
+              Delete
+            </button>
+          </div>
+        ))}
+        {draft.heroStats.length === 0 && <p className="text-xs text-muted">No hero stats yet.</p>}
       </section>
 
       <section className="card flex flex-col gap-4 p-5">

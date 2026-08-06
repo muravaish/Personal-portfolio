@@ -36,6 +36,18 @@ export const profile: ProfileBasics = {
   resumeUrl: "",
 };
 
+export interface StatHighlight {
+  label: string;
+  value: string;
+}
+
+export const heroStats: StatHighlight[] = [
+  { label: "ROC-AUC", value: "84.51%" },
+  { label: "Forecast RMSE", value: "0.52°C" },
+  { label: "SQL Accuracy", value: "27/30" },
+  { label: "Projects Shipped", value: "4" },
+];
+
 export interface SkillCategory {
   label: string;
   skills: string[];
@@ -128,6 +140,7 @@ export const projects: Project[] = [
 
 export interface ProfileData {
   profile: ProfileBasics;
+  heroStats: StatHighlight[];
   skillCategories: SkillCategory[];
   certifications: Certification[];
   projects: Project[];

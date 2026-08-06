@@ -10,7 +10,7 @@ import type {
   ChatMessage,
 } from "./types";
 import type { ProfileData } from "@/data/profile";
-import { profile, skillCategories, certifications, projects } from "@/data/profile";
+import { profile, heroStats, skillCategories, certifications, projects } from "@/data/profile";
 
 export const STORAGE_KEYS = {
   deadlines: "portfolio:deadlines",
@@ -72,6 +72,7 @@ export function useChatHistory() {
 export function useContentDraft() {
   return useLocalStorage<ProfileData>(STORAGE_KEYS.contentDraft, {
     profile,
+    heroStats,
     skillCategories,
     certifications,
     projects,
