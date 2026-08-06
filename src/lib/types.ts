@@ -60,6 +60,9 @@ export interface Settings {
   reminderWindowHours: number;
   coursewebIcsUrl: string;
   coursewebLastSynced: string;
+  /** Personal access token used only client-side to publish portfolio content edits to GitHub. */
+  githubPublishToken: string;
+  githubPublishBranch: string;
 }
 
 export type PlanBlockType = "coursework" | "skill-building" | "job-search";

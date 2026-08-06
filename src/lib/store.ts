@@ -9,6 +9,8 @@ import type {
   WorkSession,
   ChatMessage,
 } from "./types";
+import type { ProfileData } from "@/data/profile";
+import { profile, skillCategories, certifications, projects } from "@/data/profile";
 
 export const STORAGE_KEYS = {
   deadlines: "portfolio:deadlines",
@@ -17,6 +19,7 @@ export const STORAGE_KEYS = {
   skillProfile: "portfolio:skill-profile",
   settings: "portfolio:settings",
   chat: "portfolio:chat",
+  contentDraft: "portfolio:content-draft",
 } as const;
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -28,6 +31,8 @@ export const DEFAULT_SETTINGS: Settings = {
   reminderWindowHours: 48,
   coursewebIcsUrl: "",
   coursewebLastSynced: "",
+  githubPublishToken: "",
+  githubPublishBranch: "main",
 };
 
 export const DEFAULT_SKILL_PROFILE: SkillProfile = {
@@ -61,6 +66,16 @@ export function useSettings() {
 
 export function useChatHistory() {
   return useLocalStorage<ChatMessage[]>(STORAGE_KEYS.chat, []);
+}
+
+/** Editable draft of portfolio content, seeded from the currently-published src/data/profile.ts. */
+export function useContentDraft() {
+  return useLocalStorage<ProfileData>(STORAGE_KEYS.contentDraft, {
+    profile,
+    skillCategories,
+    certifications,
+    projects,
+  });
 }
 
 export function uid() {

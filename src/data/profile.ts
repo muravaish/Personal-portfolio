@@ -1,22 +1,45 @@
-// Edit this file with your real details — everything on the public portfolio
-// pages (Hero, About, Skills, Projects, Contact) is sourced from here.
+// Edit this file directly, or use the in-app editor (Dashboard → Portfolio
+// Content) to add/edit skills, projects, and certifications without touching
+// code — it publishes changes here automatically via your GitHub token.
 
-export const profile = {
+export interface SocialLinks {
+  github: string;
+  linkedin: string;
+  twitter: string;
+}
+
+export interface ProfileBasics {
+  name: string;
+  role: string;
+  location: string;
+  tagline: string;
+  bio: string;
+  email: string;
+  socials: SocialLinks;
+  resumeUrl: string;
+}
+
+export const profile: ProfileBasics = {
   name: "Vaishmitha Muralitharan",
   role: "Data Science Undergraduate",
   location: "Sri Lanka",
   tagline: "I turn data into decisions, ship projects, and track myself getting better at it.",
   bio: "Undergraduate specializing in Data Science, balancing coursework with hands-on projects and job-ready skill building. This site doubles as my personal command center — it tracks my university deadlines, plans my study/build time, logs my activity, and matches me against jobs that fit my skills.",
-  email: "you@example.com",
+  email: "vaishmitha.m@gmail.com",
   socials: {
-    github: "https://github.com/your-username",
-    linkedin: "https://linkedin.com/in/your-username",
+    github: "https://github.com/muravaish",
+    linkedin: "https://www.linkedin.com/in/vaishmitha-muralitharan/",
     twitter: "",
   },
   resumeUrl: "",
 };
 
-export const skillCategories: { label: string; skills: string[] }[] = [
+export interface SkillCategory {
+  label: string;
+  skills: string[];
+}
+
+export const skillCategories: SkillCategory[] = [
   {
     label: "Languages",
     skills: ["Python", "SQL", "R", "TypeScript"],
@@ -70,7 +93,7 @@ export const projects: Project[] = [
     description:
       "A portfolio that's also a working productivity system: real CourseWeb deadline sync, a heuristic day-planner that balances coursework with job-prep, a GitHub + self-logged activity tracker, a skill-matched job board, and a BYO-key AI assistant.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Anthropic API"],
-    repoUrl: "",
+    repoUrl: "https://github.com/muravaish/Personal-portfolio",
     highlight: true,
   },
   {
@@ -90,3 +113,10 @@ export const projects: Project[] = [
     repoUrl: "",
   },
 ];
+
+export interface ProfileData {
+  profile: ProfileBasics;
+  skillCategories: SkillCategory[];
+  certifications: Certification[];
+  projects: Project[];
+}

@@ -107,6 +107,39 @@ export function SettingsView() {
       </section>
 
       <section className="card flex flex-col gap-3 p-5">
+        <h2 className="text-sm font-semibold">Publish Portfolio Content</h2>
+        <p className="text-xs text-muted">
+          Lets the Portfolio Content editor (Dashboard → Portfolio Content) commit your skills/projects/certifications
+          edits straight to your GitHub repo — no code, no zip files. Create a{" "}
+          <a
+            href="https://github.com/settings/personal-access-tokens/new"
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent-2 hover:underline"
+          >
+            fine-grained personal access token
+          </a>{" "}
+          scoped to just this repository with <strong>Contents: Read and write</strong> permission, and paste it
+          below. It&apos;s stored only in this browser and sent only to GitHub&apos;s API.
+        </p>
+        <label className="label">GitHub personal access token</label>
+        <input
+          type="password"
+          className="input"
+          placeholder="github_pat_..."
+          value={settings.githubPublishToken}
+          onChange={(e) => setSettings((s) => ({ ...s, githubPublishToken: e.target.value }))}
+        />
+        <label className="label">Branch to publish to</label>
+        <input
+          className="input"
+          placeholder="main"
+          value={settings.githubPublishBranch}
+          onChange={(e) => setSettings((s) => ({ ...s, githubPublishBranch: e.target.value }))}
+        />
+      </section>
+
+      <section className="card flex flex-col gap-3 p-5">
         <h2 className="text-sm font-semibold">Scheduling preferences</h2>
         <label className="label">Daily free hours for study/build time</label>
         <input
