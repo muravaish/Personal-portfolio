@@ -97,12 +97,12 @@ export const projects: Project[] = [
     highlight: true,
   },
   {
-    id: "project-two",
-    title: "Second Project",
-    description: "Short description of what it does and why it's interesting.",
-    tags: ["Add", "Tech", "Tags"],
-    url: "",
-    repoUrl: "",
+    id: "customer-churn-ai-platform",
+    title: "Customer Churn AI Intelligence Platform",
+    description:
+      "An end-to-end machine learning project that predicts customer churn, assigns risk levels, recommends retention actions, and presents insights through a Streamlit app and Power BI dashboard. Connects data analysis, ML modeling, business logic, and decision support into one practical workflow.",
+    tags: ["Python", "scikit-learn", "SQL", "Streamlit", "Power BI", "MLflow"],
+    repoUrl: "https://github.com/muravaish/customer-churn-ai-intelligence-platform",
   },
   {
     id: "project-three",
