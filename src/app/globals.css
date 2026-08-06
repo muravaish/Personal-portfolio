@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #05060a;
-  --surface: #0d0f17;
-  --foreground: #f4f5f7;
-  --muted: #9498a8;
-  --accent: #8b5cf6;
-  --accent-2: #22d3ee;
-  --border: rgba(255, 255, 255, 0.09);
-  --danger: #f87171;
-  --warning: #fbbf24;
-  --success: #34d399;
+  --background: #0b0a08;
+  --surface: #14120d;
+  --foreground: #f2ede2;
+  --muted: #9c9486;
+  --accent: #c98a3e;
+  --accent-strong: #f4b855;
+  --border: rgba(242, 237, 226, 0.1);
+  --danger: #f0776a;
+  --warning: #f4b855;
+  --success: #8fbc94;
 }
 
 @theme inline {
@@ -18,8 +18,8 @@
   --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
+  --color-accent: var(--accent-strong);
+  --color-accent-2: var(--accent-strong);
   --color-border: var(--border);
   --color-danger: var(--danger);
   --color-warning: var(--warning);
@@ -37,44 +37,41 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   background-image:
-    radial-gradient(60rem 30rem at 90% -10%, rgba(139, 92, 246, 0.16), transparent),
-    radial-gradient(50rem 26rem at -10% 20%, rgba(34, 211, 238, 0.12), transparent);
+    radial-gradient(circle, rgba(242, 237, 226, 0.055) 1px, transparent 1px),
+    radial-gradient(46rem 24rem at 100% 0%, rgba(244, 184, 85, 0.1), transparent);
+  background-size: 24px 24px, 100% 100%;
   background-attachment: fixed;
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.35);
+  background: rgba(244, 184, 85, 0.3);
 }
 
 @layer components {
   .card {
-    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 1rem;
-    backdrop-filter: blur(12px);
+    border-radius: 0.5rem;
   }
 
   .gradient-text {
-    background-image: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--accent-strong);
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 0.75rem;
+    border-radius: 0.4rem;
     padding: 0.6rem 1.1rem;
     font-weight: 600;
     font-size: 0.875rem;
-    color: #05060a;
-    background-image: linear-gradient(90deg, var(--accent), var(--accent-2));
-    transition: opacity 0.15s ease, transform 0.15s ease;
+    color: #0b0a08;
+    background: var(--accent-strong);
+    transition: background 0.15s ease, transform 0.15s ease;
   }
   .btn-primary:hover {
-    opacity: 0.9;
+    background: #ffcb7a;
     transform: translateY(-1px);
   }
 
@@ -82,49 +79,51 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 0.75rem;
+    border-radius: 0.4rem;
     padding: 0.6rem 1.1rem;
     font-weight: 600;
     font-size: 0.875rem;
     color: var(--foreground);
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(242, 237, 226, 0.03);
     transition: background 0.15s ease, border-color 0.15s ease;
   }
   .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(242, 237, 226, 0.07);
+    border-color: rgba(242, 237, 226, 0.2);
   }
 
   .input {
     width: 100%;
-    border-radius: 0.6rem;
+    border-radius: 0.35rem;
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(242, 237, 226, 0.03);
     padding: 0.55rem 0.75rem;
     font-size: 0.875rem;
     color: var(--foreground);
     outline: none;
   }
   .input:focus {
-    border-color: var(--accent);
+    border-color: var(--accent-strong);
   }
 
   .label {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
-    border-radius: 999px;
-    padding: 0.15rem 0.6rem;
+    border-radius: 0.3rem;
+    padding: 0.15rem 0.55rem;
+    font-family: var(--font-mono);
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 500;
     border: 1px solid var(--border);
   }
 }

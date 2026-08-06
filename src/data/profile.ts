@@ -2,11 +2,11 @@
 // pages (Hero, About, Skills, Projects, Contact) is sourced from here.
 
 export const profile = {
-  name: "Your Name",
-  role: "Software Engineer",
+  name: "Vaishmitha Muralitharan",
+  role: "Data Science Undergraduate",
   location: "Sri Lanka",
-  tagline: "I build things, ship them, and track myself getting better at it.",
-  bio: "Undergraduate developer balancing coursework with hands-on projects and job-ready skill building. This site doubles as my personal command center — it tracks my university deadlines, plans my study/build time, logs my activity, and matches me against jobs that fit my skills.",
+  tagline: "I turn data into decisions, ship projects, and track myself getting better at it.",
+  bio: "Undergraduate specializing in Data Science, balancing coursework with hands-on projects and job-ready skill building. This site doubles as my personal command center — it tracks my university deadlines, plans my study/build time, logs my activity, and matches me against jobs that fit my skills.",
   email: "you@example.com",
   socials: {
     github: "https://github.com/your-username",
@@ -19,19 +19,19 @@ export const profile = {
 export const skillCategories: { label: string; skills: string[] }[] = [
   {
     label: "Languages",
-    skills: ["TypeScript", "JavaScript", "Python", "Java", "SQL"],
+    skills: ["Python", "SQL", "R", "TypeScript"],
   },
   {
-    label: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS"],
+    label: "Data Science",
+    skills: ["Pandas", "NumPy", "scikit-learn", "Machine Learning"],
   },
   {
-    label: "Backend",
-    skills: ["Node.js", "REST APIs", "PostgreSQL"],
+    label: "Visualization",
+    skills: ["Matplotlib", "Power BI", "Tableau"],
   },
   {
     label: "Tools",
-    skills: ["Git", "Docker", "Linux"],
+    skills: ["Jupyter", "Git", "PostgreSQL"],
   },
 ];
 
