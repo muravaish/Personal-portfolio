@@ -78,7 +78,7 @@ export function DataParticles() {
           const dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < LINK_DISTANCE) {
-            ctx!.strokeStyle = `rgba(244, 184, 85, ${0.14 * (1 - dist / LINK_DISTANCE)})`;
+            ctx!.strokeStyle = `rgba(36, 31, 24, ${0.16 * (1 - dist / LINK_DISTANCE)})`;
             ctx!.lineWidth = 1;
             ctx!.beginPath();
             ctx!.moveTo(a.x, a.y);
@@ -89,7 +89,7 @@ export function DataParticles() {
       }
 
       for (const p of particles) {
-        ctx!.fillStyle = "rgba(244, 184, 85, 0.55)";
+        ctx!.fillStyle = "rgba(36, 31, 24, 0.4)";
         ctx!.beginPath();
         ctx!.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
         ctx!.fill();
