@@ -100,6 +100,7 @@ export interface Project {
   repoUrl?: string;
   highlight?: boolean;
   imageUrl?: string;
+  videoUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -136,6 +137,13 @@ export const projects: Project[] = [
       "Analyzed ~156,000 daily weather readings across 268 cities to uncover climate patterns and forecast global temperature. Compared SARIMA, Prophet, XGBoost, and a weighted ensemble (0.52°C RMSE, beating every individual model), with anomaly detection via Isolation Forest/STL decomposition and SHAP-based feature importance confirming latitude and UV index as the strongest predictors.",
     tags: ["Python", "pandas", "scikit-learn", "Prophet", "XGBoost", "SHAP"],
     repoUrl: "https://github.com/muravaish/weather-trend-forecasting",
+  },
+  {
+    id: "weather-app-fullstack",
+    title: "Weather App",
+    description:
+      "A full-stack weather app (React + Node/Express) with live location search, current + 5-day forecasts, an interactive map, and a full CRUD logbook with 5-format data export. Goes beyond the basics with multi-day natural hazard detection (flood/storm/heatwave/cold-wave), historical climate-context tagging, and a real Model Output Statistics bias-correction loop that improves future forecasts per location.",
+    tags: ["React", "Vite", "Node.js", "Express", "Leaflet", "Open-Meteo API"],
   },
 ];
 

@@ -147,11 +147,12 @@ export function PortfolioContentView() {
     setDraft((d) => ({ ...d, certifications: d.certifications.filter((c) => c.id !== id) }));
   }
 
-  async function uploadAssetImage(
+  async function uploadAsset(
     id: string,
     title: string,
     file: File,
     subdir: string,
+    kind: "image" | "video",
     onSuccess: (publicPath: string) => void,
   ) {
     setUploadErrors((prev) => ({ ...prev, [id]: "" }));
@@ -159,18 +160,26 @@ export function PortfolioContentView() {
       setUploadErrors((prev) => ({ ...prev, [id]: "Add a GitHub token in Settings first." }));
       return;
     }
+    const maxMB = kind === "video" ? 20 : 8;
+    if (file.size > maxMB * 1024 * 1024) {
+      setUploadErrors((prev) => ({
+        ...prev,
+        [id]: `That file is too big (max ${maxMB}MB) — ${kind === "video" ? "trim the clip shorter or compress it" : "use a smaller image"}.`,
+      }));
+      return;
+    }
     setUploadingId(id);
     try {
       const base64 = await readFileAsBase64(file);
       const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
-      const filename = `${id}${ext}`;
+      const filename = `${id}${kind === "video" ? "-video" : ""}${ext}`;
       const res = await publishPublicAsset(
         settings.githubPublishToken,
         settings.githubPublishBranch || "main",
         subdir,
         filename,
         base64,
-        `Add ${subdir.slice(0, -1)} image for ${title}`,
+        `Add ${subdir.slice(0, -1)} ${kind} for ${title}`,
       );
       if (res.success && res.publicPath) {
         onSuccess(res.publicPath);
@@ -188,14 +197,20 @@ export function PortfolioContentView() {
   }
 
   function uploadCertificationImage(cert: Certification, file: File) {
-    return uploadAssetImage(cert.id, cert.title, file, "certifications", (imageUrl) =>
+    return uploadAsset(cert.id, cert.title, file, "certifications", "image", (imageUrl) =>
       updateCertification(cert.id, { imageUrl }),
     );
   }
 
   function uploadProjectImage(project: Project, file: File) {
-    return uploadAssetImage(project.id, project.title, file, "projects", (imageUrl) =>
+    return uploadAsset(project.id, project.title, file, "projects", "image", (imageUrl) =>
       updateProject(project.id, { imageUrl }),
+    );
+  }
+
+  function uploadProjectVideo(project: Project, file: File) {
+    return uploadAsset(project.id, project.title, file, "projects", "video", (videoUrl) =>
+      updateProject(project.id, { videoUrl }),
     );
   }
 
@@ -443,6 +458,34 @@ export function PortfolioContentView() {
                   onClick={() => updateProject(p.id, { imageUrl: undefined })}
                 >
                   Remove image
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              {p.videoUrl && (
+                <video src={p.videoUrl} autoPlay loop muted playsInline className="h-16 w-28 rounded object-cover" />
+              )}
+              <label className="btn-ghost cursor-pointer text-xs">
+                {uploadingId === p.id ? "Uploading…" : p.videoUrl ? "Replace video" : "Upload preview video (max 20MB)"}
+                <input
+                  type="file"
+                  accept="video/*"
+                  className="hidden"
+                  disabled={uploadingId === p.id}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    e.target.value = "";
+                    if (file) uploadProjectVideo(p, file);
+                  }}
+                />
+              </label>
+              {p.videoUrl && (
+                <button
+                  type="button"
+                  className="text-xs text-danger hover:underline"
+                  onClick={() => updateProject(p.id, { videoUrl: undefined })}
+                >
+                  Remove video
                 </button>
               )}
               {uploadErrors[p.id] && <span className="text-xs text-danger">{uploadErrors[p.id]}</span>}
