@@ -223,7 +223,8 @@ export const projects: Project[] = [
     "id": "weather-app-fullstack",
     "title": "Weather App",
     "description": "A full-stack weather app (React + Node/Express) with live location search, current + 5-day forecasts, an interactive map, and a full CRUD logbook with 5-format data export. Goes beyond the basics with multi-day natural hazard detection (flood/storm/heatwave/cold-wave), historical climate-context tagging, and a real Model Output Statistics bias-correction loop that improves future forecasts per location.",
-    "tags": ["React", "Vite", "Node.js", "Express", "Leaflet", "Open-Meteo API"]
+    "tags": ["React", "Vite", "Node.js", "Express", "Leaflet", "Open-Meteo API"],
+    "repoUrl": "https://github.com/muravaish/weather-app-fullstack"
   }
 ];
 
