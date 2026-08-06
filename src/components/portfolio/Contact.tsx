@@ -22,6 +22,11 @@ export function Contact() {
               LinkedIn
             </a>
           )}
+          {profile.socials.kaggle && (
+            <a href={profile.socials.kaggle} target="_blank" rel="noreferrer" className="btn-ghost">
+              Kaggle
+            </a>
+          )}
         </div>
       </div>
       <footer className="pt-10 text-center text-xs text-muted">

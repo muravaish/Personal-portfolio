@@ -10,6 +10,7 @@ export interface SocialLinks {
   github: string;
   linkedin: string;
   twitter: string;
+  kaggle: string;
 }
 
 export interface ProfileBasics {

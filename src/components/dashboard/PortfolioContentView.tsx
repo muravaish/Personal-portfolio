@@ -216,6 +216,10 @@ export function PortfolioContentView() {
             <input className="input mt-1" value={draft.profile.socials.twitter} onChange={(e) => updateSocial("twitter", e.target.value)} />
           </div>
           <div>
+            <label className="label">Kaggle URL</label>
+            <input className="input mt-1" value={draft.profile.socials.kaggle} onChange={(e) => updateSocial("kaggle", e.target.value)} />
+          </div>
+          <div>
             <label className="label">Resume URL</label>
             <input className="input mt-1" value={draft.profile.resumeUrl} onChange={(e) => updateProfileField("resumeUrl", e.target.value)} />
           </div>

@@ -6,6 +6,7 @@ export interface SocialLinks {
   github: string;
   linkedin: string;
   twitter: string;
+  kaggle: string;
 }
 
 export interface ProfileBasics {
@@ -30,6 +31,7 @@ export const profile: ProfileBasics = {
     github: "https://github.com/muravaish",
     linkedin: "https://www.linkedin.com/in/vaishmitha-muralitharan/",
     twitter: "",
+    kaggle: "https://www.kaggle.com/muravaish",
   },
   resumeUrl: "",
 };
