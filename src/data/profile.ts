@@ -113,6 +113,14 @@ export const projects: Project[] = [
     url: "https://autonomous-data-analyst-agent-8zsmr9ii5bsfxnshu37ykd.streamlit.app/",
     repoUrl: "https://github.com/muravaish/autonomous-data-analyst-agent",
   },
+  {
+    id: "weather-trend-forecasting",
+    title: "Weather Trend Forecasting",
+    description:
+      "Analyzed ~156,000 daily weather readings across 268 cities to uncover climate patterns and forecast global temperature. Compared SARIMA, Prophet, XGBoost, and a weighted ensemble (0.52°C RMSE, beating every individual model), with anomaly detection via Isolation Forest/STL decomposition and SHAP-based feature importance confirming latitude and UV index as the strongest predictors.",
+    tags: ["Python", "pandas", "scikit-learn", "Prophet", "XGBoost", "SHAP"],
+    repoUrl: "https://github.com/muravaish/weather-trend-forecasting",
+  },
 ];
 
 export interface ProfileData {
