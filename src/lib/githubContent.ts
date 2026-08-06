@@ -1,6 +1,6 @@
 const OWNER = "muravaish";
 const REPO = "Personal-portfolio";
-const FILE_PATH = "src/data/profile.ts";
+const PROFILE_PATH = "src/data/profile.ts";
 
 export interface PublishResult {
   success: boolean;
@@ -20,9 +20,9 @@ function encodeUtf8Base64(content: string) {
   return btoa(unescape(encodeURIComponent(content)));
 }
 
-async function getFileSha(token: string, branch: string): Promise<string | undefined> {
+async function getFileSha(token: string, path: string, branch: string): Promise<string | undefined> {
   const res = await fetch(
-    `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}?ref=${encodeURIComponent(branch)}`,
+    `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${encodeURIComponent(branch)}`,
     { headers: authHeaders(token) },
   );
   if (res.status === 404) return undefined;
@@ -34,22 +34,23 @@ async function getFileSha(token: string, branch: string): Promise<string | undef
   return data.sha as string;
 }
 
-/** Commits new content for src/data/profile.ts directly to the given branch using a user-supplied GitHub token. */
-export async function publishProfileFile(
+/** Commits base64-encoded content to any path in the repo using a user-supplied GitHub token. */
+async function commitFile(
   token: string,
   branch: string,
-  content: string,
+  path: string,
+  base64Content: string,
   message: string,
 ): Promise<PublishResult> {
   if (!token.trim()) return { success: false, error: "Add a GitHub token in Settings first." };
   try {
-    const sha = await getFileSha(token, branch);
-    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`, {
+    const sha = await getFileSha(token, path, branch);
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
       method: "PUT",
       headers: { ...authHeaders(token), "Content-Type": "application/json" },
       body: JSON.stringify({
         message,
-        content: encodeUtf8Base64(content),
+        content: base64Content,
         branch,
         sha,
       }),
@@ -69,4 +70,28 @@ export async function publishProfileFile(
       error: e instanceof Error ? e.message : "Could not reach GitHub.",
     };
   }
+}
+
+/** Commits new content for src/data/profile.ts directly to the given branch using a user-supplied GitHub token. */
+export async function publishProfileFile(
+  token: string,
+  branch: string,
+  content: string,
+  message: string,
+): Promise<PublishResult> {
+  return commitFile(token, branch, PROFILE_PATH, encodeUtf8Base64(content), message);
+}
+
+/** Commits an already-base64-encoded binary file (e.g. an uploaded image) to public/<subdir>/<filename>. */
+export async function publishPublicAsset(
+  token: string,
+  branch: string,
+  filename: string,
+  base64Content: string,
+  message: string,
+): Promise<PublishResult & { publicPath?: string }> {
+  const path = `public/certifications/${filename}`;
+  const result = await commitFile(token, branch, path, base64Content, message);
+  if (!result.success) return result;
+  return { ...result, publicPath: `/certifications/${filename}` };
 }

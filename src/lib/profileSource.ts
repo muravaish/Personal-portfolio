@@ -39,6 +39,7 @@ export interface Certification {
   issuer: string;
   date: string;
   url?: string;
+  imageUrl?: string;
 }
 
 export const certifications: Certification[] = ${JSON.stringify(data.certifications, null, 2)};

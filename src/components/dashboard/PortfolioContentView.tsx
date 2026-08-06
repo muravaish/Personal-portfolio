@@ -5,7 +5,19 @@ import Link from "next/link";
 import { useContentDraft, useSettings, uid } from "@/lib/store";
 import type { Certification, Project, SkillCategory } from "@/data/profile";
 import { serializeProfileFile } from "@/lib/profileSource";
-import { publishProfileFile } from "@/lib/githubContent";
+import { publishProfileFile, publishPublicAsset } from "@/lib/githubContent";
+
+function readFileAsBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.slice(result.indexOf(",") + 1));
+    };
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
 
 function TagInput({
   values,
@@ -68,6 +80,8 @@ export function PortfolioContentView() {
   const [settings] = useSettings();
   const [publishing, setPublishing] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; message: string; url?: string } | null>(null);
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const [uploadErrors, setUploadErrors] = useState<Record<string, string>>({});
 
   if (!hydrated) return null;
 
@@ -117,6 +131,39 @@ export function PortfolioContentView() {
   }
   function removeCertification(id: string) {
     setDraft((d) => ({ ...d, certifications: d.certifications.filter((c) => c.id !== id) }));
+  }
+
+  async function uploadCertificationImage(cert: Certification, file: File) {
+    setUploadErrors((prev) => ({ ...prev, [cert.id]: "" }));
+    if (!settings.githubPublishToken) {
+      setUploadErrors((prev) => ({ ...prev, [cert.id]: "Add a GitHub token in Settings first." }));
+      return;
+    }
+    setUploadingId(cert.id);
+    try {
+      const base64 = await readFileAsBase64(file);
+      const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
+      const filename = `${cert.id}${ext}`;
+      const res = await publishPublicAsset(
+        settings.githubPublishToken,
+        settings.githubPublishBranch || "main",
+        filename,
+        base64,
+        `Add certificate image for ${cert.title}`,
+      );
+      if (res.success && res.publicPath) {
+        updateCertification(cert.id, { imageUrl: res.publicPath });
+      } else {
+        setUploadErrors((prev) => ({ ...prev, [cert.id]: res.error || "Upload failed." }));
+      }
+    } catch (e) {
+      setUploadErrors((prev) => ({
+        ...prev,
+        [cert.id]: e instanceof Error ? e.message : "Upload failed.",
+      }));
+    } finally {
+      setUploadingId(null);
+    }
   }
 
   async function publish() {
@@ -318,38 +365,74 @@ export function PortfolioContentView() {
           </button>
         </div>
         {draft.certifications.map((c) => (
-          <div key={c.id} className="flex flex-col gap-3 rounded-lg bg-white/[0.03] p-4 sm:flex-row sm:items-center">
-            <input
-              className="input"
-              value={c.title}
-              onChange={(e) => updateCertification(c.id, { title: e.target.value })}
-              placeholder="Title"
-            />
-            <input
-              className="input"
-              value={c.issuer}
-              onChange={(e) => updateCertification(c.id, { issuer: e.target.value })}
-              placeholder="Issuer"
-            />
-            <input
-              className="input sm:w-28"
-              value={c.date}
-              onChange={(e) => updateCertification(c.id, { date: e.target.value })}
-              placeholder="Year"
-            />
-            <input
-              className="input"
-              value={c.url || ""}
-              onChange={(e) => updateCertification(c.id, { url: e.target.value })}
-              placeholder="URL (optional)"
-            />
-            <button
-              type="button"
-              className="text-xs text-danger hover:underline whitespace-nowrap"
-              onClick={() => removeCertification(c.id)}
-            >
-              Delete
-            </button>
+          <div key={c.id} className="flex flex-col gap-3 rounded-lg bg-white/[0.03] p-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <input
+                className="input"
+                value={c.title}
+                onChange={(e) => updateCertification(c.id, { title: e.target.value })}
+                placeholder="Title"
+              />
+              <input
+                className="input"
+                value={c.issuer}
+                onChange={(e) => updateCertification(c.id, { issuer: e.target.value })}
+                placeholder="Issuer"
+              />
+              <input
+                className="input sm:w-28"
+                value={c.date}
+                onChange={(e) => updateCertification(c.id, { date: e.target.value })}
+                placeholder="Year"
+              />
+              <input
+                className="input"
+                value={c.url || ""}
+                onChange={(e) => updateCertification(c.id, { url: e.target.value })}
+                placeholder="Verify URL (optional)"
+              />
+              <button
+                type="button"
+                className="text-xs text-danger hover:underline whitespace-nowrap"
+                onClick={() => removeCertification(c.id)}
+              >
+                Delete
+              </button>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              {c.imageUrl && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={c.imageUrl}
+                  alt={`${c.title} certificate preview`}
+                  className="h-16 w-24 rounded object-cover"
+                />
+              )}
+              <label className="btn-ghost cursor-pointer text-xs">
+                {uploadingId === c.id ? "Uploading…" : c.imageUrl ? "Replace image" : "Upload certificate image"}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  disabled={uploadingId === c.id}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    e.target.value = "";
+                    if (file) uploadCertificationImage(c, file);
+                  }}
+                />
+              </label>
+              {c.imageUrl && (
+                <button
+                  type="button"
+                  className="text-xs text-danger hover:underline"
+                  onClick={() => updateCertification(c.id, { imageUrl: undefined })}
+                >
+                  Remove image
+                </button>
+              )}
+              {uploadErrors[c.id] && <span className="text-xs text-danger">{uploadErrors[c.id]}</span>}
+            </div>
           </div>
         ))}
         {draft.certifications.length === 0 && <p className="text-xs text-muted">No certifications yet.</p>}
