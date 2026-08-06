@@ -68,15 +68,30 @@ export function useChatHistory() {
   return useLocalStorage<ChatMessage[]>(STORAGE_KEYS.chat, []);
 }
 
+const DEFAULT_CONTENT_DRAFT: ProfileData = {
+  profile,
+  heroStats,
+  skillCategories,
+  certifications,
+  projects,
+};
+
 /** Editable draft of portfolio content, seeded from the currently-published src/data/profile.ts. */
 export function useContentDraft() {
-  return useLocalStorage<ProfileData>(STORAGE_KEYS.contentDraft, {
-    profile,
-    heroStats,
-    skillCategories,
-    certifications,
-    projects,
-  });
+  const [stored, setStored, hydrated] = useLocalStorage<ProfileData>(
+    STORAGE_KEYS.contentDraft,
+    DEFAULT_CONTENT_DRAFT,
+  );
+  // Backfills fields added to ProfileData after a draft was already saved to localStorage,
+  // so old saved drafts don't crash the editor when new fields are read off them.
+  const draft: ProfileData = {
+    profile: stored.profile ?? DEFAULT_CONTENT_DRAFT.profile,
+    heroStats: stored.heroStats ?? DEFAULT_CONTENT_DRAFT.heroStats,
+    skillCategories: stored.skillCategories ?? DEFAULT_CONTENT_DRAFT.skillCategories,
+    certifications: stored.certifications ?? DEFAULT_CONTENT_DRAFT.certifications,
+    projects: stored.projects ?? DEFAULT_CONTENT_DRAFT.projects,
+  };
+  return [draft, setStored, hydrated] as const;
 }
 
 export function uid() {
