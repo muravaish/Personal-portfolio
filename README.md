@@ -68,4 +68,20 @@ center.
 ## Deploy
 
 Any Next.js host works (e.g. [Vercel](https://vercel.com/new)). No environment
-variables or database are required — everything is client-stored.
+variables or database are required for the portfolio itself — everything is
+client-stored.
+
+### Password-protect the Command Center (optional but recommended)
+
+The `/dashboard` section is public by default (it's harmless to strangers since
+all data is per-browser, but it looks more intentional locked). To require a
+login, set these environment variables on your host:
+
+- `DASHBOARD_PASSWORD` — required to turn the lock on at all
+- `DASHBOARD_USERNAME` — optional, defaults to `admin`
+
+This uses standard HTTP Basic Auth (`src/proxy.ts`), checked on the server
+before any dashboard page loads — not just a client-side check. Note this is a
+simple deterrent, not bank-grade security: credentials travel base64-encoded
+per request (fine over HTTPS, which all major hosts provide by default) and
+there's no rate limiting or lockout.
