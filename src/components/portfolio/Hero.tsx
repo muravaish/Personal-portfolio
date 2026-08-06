@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { profile, heroStats } from "@/data/profile";
-import { DataParticles } from "./DataParticles";
+import { LiveAnalysisBackdrop } from "./LiveAnalysisBackdrop";
 import { LiveActivityBackdrop } from "./LiveActivityBackdrop";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <DataParticles />
+      <LiveAnalysisBackdrop />
       <LiveActivityBackdrop githubUrl={profile.socials.github} />
       <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 pb-20 pt-20 sm:pt-28">
         <motion.span
