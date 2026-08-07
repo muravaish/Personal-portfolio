@@ -1,5 +1,6 @@
 import { profile } from "@/data/profile";
 import { RocCurveMotif } from "./RocCurveMotif";
+import { TechIcon } from "./TechIcon";
 
 export function Contact() {
   return (
@@ -12,10 +13,12 @@ export function Contact() {
         </p>
         <div className="flex flex-wrap gap-3 pt-2">
           <a href={`mailto:${profile.email}`} className="btn-primary">
+            <TechIcon name="gmail" />
             {profile.email}
           </a>
           {profile.socials.github && (
             <a href={profile.socials.github} target="_blank" rel="noreferrer" className="btn-ghost">
+              <TechIcon name="github" />
               GitHub
             </a>
           )}
@@ -26,6 +29,7 @@ export function Contact() {
           )}
           {profile.socials.kaggle && (
             <a href={profile.socials.kaggle} target="_blank" rel="noreferrer" className="btn-ghost">
+              <TechIcon name="kaggle" />
               Kaggle
             </a>
           )}

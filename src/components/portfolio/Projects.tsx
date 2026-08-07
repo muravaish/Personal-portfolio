@@ -1,4 +1,5 @@
 import { projects, type Project } from "@/data/profile";
+import { TechIcon } from "./TechIcon";
 
 function ProjectBody({ p }: { p: Project }) {
   return (
@@ -7,7 +8,8 @@ function ProjectBody({ p }: { p: Project }) {
       <p className="text-sm leading-relaxed text-muted">{p.description}</p>
       <div className="flex flex-wrap gap-2 pt-1">
         {p.tags.map((t) => (
-          <span key={t} className="badge text-foreground/70">
+          <span key={t} className="badge gap-1.5 text-foreground/70">
+            <TechIcon name={t} />
             {t}
           </span>
         ))}
