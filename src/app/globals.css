@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  /* Bold monochrome editorial — near-white/near-black base, one flat accent pop. */
-  --background: #f7f7f5;
+  /* Picto-style — light cool gray canvas, white rounded cards, violet accent. */
+  --background: #eeeef2;
   --surface: #ffffff;
-  --foreground: #131313;
-  --muted: #6b6b68;
-  --accent: #c93d22;
-  --accent-strong: #e8472c;
-  --accent-from: #e8472c;
-  --accent-to: #e8472c;
-  --border: rgba(19, 19, 19, 0.14);
-  --overlay-soft: rgba(19, 19, 19, 0.035);
-  --overlay-soft-hover: rgba(19, 19, 19, 0.07);
-  --overlay-border-hover: rgba(19, 19, 19, 0.24);
-  --card-shadow: 0 1px 2px rgba(19, 19, 19, 0.05), 0 14px 34px -20px rgba(19, 19, 19, 0.18);
-  --selection-tint: rgba(232, 71, 44, 0.22);
-  --danger: #b8382a;
+  --foreground: #171730;
+  --muted: #6b7086;
+  --accent: #7c3aed;
+  --accent-strong: #8b3fe0;
+  --accent-from: #a855f7;
+  --accent-to: #ec4899;
+  --border: rgba(23, 23, 48, 0.08);
+  --overlay-soft: rgba(23, 23, 48, 0.035);
+  --overlay-soft-hover: rgba(23, 23, 48, 0.06);
+  --overlay-border-hover: rgba(23, 23, 48, 0.18);
+  --card-shadow: 0 1px 2px rgba(23, 23, 48, 0.04), 0 20px 40px -22px rgba(23, 23, 48, 0.22);
+  --selection-tint: rgba(139, 63, 224, 0.22);
+  --danger: #c0392b;
   --warning: #a8681a;
-  --success: #3f7a4a;
+  --success: #2f8a5a;
   color-scheme: light;
 }
 
@@ -41,9 +41,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  background-image: radial-gradient(circle, rgba(19, 19, 19, 0.05) 1px, transparent 1px);
-  background-size: 22px 22px;
-  background-attachment: fixed;
 }
 
 ::selection {
@@ -54,30 +51,31 @@ body {
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 0.4rem;
+    border-radius: 1.1rem;
     box-shadow: var(--card-shadow);
   }
 
   .gradient-text {
-    color: var(--accent-strong);
+    background-image: linear-gradient(100deg, var(--accent-from), var(--accent-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 0.3rem;
-    padding: 0.65rem 1.2rem;
-    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+    font-weight: 600;
     font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: #fdf6f4;
+    color: #ffffff;
     background: var(--accent-strong);
     transition: opacity 0.15s ease, transform 0.15s ease;
   }
   .btn-primary:hover {
-    opacity: 0.88;
+    opacity: 0.9;
     transform: translateY(-1px);
   }
 
@@ -85,15 +83,13 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 0.3rem;
-    padding: 0.65rem 1.2rem;
-    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+    font-weight: 600;
     font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
     color: var(--foreground);
     border: 1px solid var(--border);
-    background: var(--overlay-soft);
+    background: var(--surface);
     transition: background 0.15s ease, border-color 0.15s ease;
   }
   .btn-ghost:hover {
@@ -103,10 +99,10 @@ body {
 
   .input {
     width: 100%;
-    border-radius: 0.3rem;
+    border-radius: 0.6rem;
     border: 1px solid var(--border);
-    background: var(--overlay-soft);
-    padding: 0.55rem 0.75rem;
+    background: var(--surface);
+    padding: 0.55rem 0.85rem;
     font-size: 0.875rem;
     color: var(--foreground);
     outline: none;
@@ -127,12 +123,13 @@ body {
   .badge {
     display: inline-flex;
     align-items: center;
-    border-radius: 0.25rem;
-    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    padding: 0.2rem 0.7rem;
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 500;
     border: 1px solid var(--border);
+    background: var(--surface);
   }
 
   .watermark {
@@ -144,12 +141,6 @@ body {
     text-transform: uppercase;
     line-height: 0.8;
     letter-spacing: -0.03em;
-    color: rgba(19, 19, 19, 0.045);
-  }
-}
-
-@media (max-width: 640px) {
-  body {
-    background-attachment: scroll;
+    color: rgba(23, 23, 48, 0.04);
   }
 }

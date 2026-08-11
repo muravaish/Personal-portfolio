@@ -9,21 +9,19 @@ import { LiveActivityBackdrop } from "./LiveActivityBackdrop";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-24 -top-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,var(--accent-from),transparent_70%)] opacity-25 blur-3xl" />
+        <div className="absolute -right-32 top-10 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,var(--accent-to),transparent_70%)] opacity-20 blur-3xl" />
+      </div>
       <LiveAnalysisBackdrop />
       <LiveActivityBackdrop githubUrl={profile.socials.github} />
-      <div
-        aria-hidden="true"
-        className="watermark left-1/2 top-6 -translate-x-1/2 text-[5.5rem] sm:top-10 sm:text-[11rem]"
-      >
-        PORTFOLIO
-      </div>
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-6">
         <div className="flex flex-col items-start gap-6">
           <motion.span
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="badge border-accent/30 text-accent"
+            className="rounded-full bg-[linear-gradient(100deg,var(--accent-from),var(--accent-to))] px-4 py-1.5 text-xs font-semibold text-white shadow-[0_8px_20px_-8px_var(--accent)]"
           >
             Available for opportunities
           </motion.span>
