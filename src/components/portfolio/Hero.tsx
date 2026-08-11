@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { profile, heroStats } from "@/data/profile";
-import { LiveAnalysisBackdrop } from "./LiveAnalysisBackdrop";
-import { LiveActivityBackdrop } from "./LiveActivityBackdrop";
 
 export function Hero() {
   return (
@@ -13,8 +11,6 @@ export function Hero() {
         <div className="absolute -left-24 -top-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,var(--accent-from),transparent_70%)] opacity-25 blur-3xl" />
         <div className="absolute -right-32 top-10 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,var(--accent-to),transparent_70%)] opacity-20 blur-3xl" />
       </div>
-      <LiveAnalysisBackdrop />
-      <LiveActivityBackdrop githubUrl={profile.socials.github} />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-6">
         <div className="flex flex-col items-start gap-6">
           <motion.span
@@ -33,8 +29,6 @@ export function Hero() {
             className="max-w-xl text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl"
           >
             Hi, I&apos;m {profile.name}.
-            <br />
-            <span className="gradient-text">{profile.role}</span>, building &amp; shipping.
           </motion.h1>
 
           <motion.p
@@ -43,7 +37,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="max-w-xl text-lg text-muted"
           >
-            {profile.tagline}
+            <span className="gradient-text font-semibold">{profile.role}</span>. {profile.tagline}
           </motion.p>
 
           {heroStats.length > 0 && (
