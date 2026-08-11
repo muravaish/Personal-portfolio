@@ -196,6 +196,12 @@ export function PortfolioContentView() {
     }
   }
 
+  function uploadProfilePhoto(file: File) {
+    return uploadAsset("profile-photo", draft.profile.name, file, "profile", "image", (photoUrl) =>
+      updateProfileField("photoUrl", photoUrl),
+    );
+  }
+
   function uploadCertificationImage(cert: Certification, file: File) {
     return uploadAsset(cert.id, cert.title, file, "certifications", "image", (imageUrl) =>
       updateCertification(cert.id, { imageUrl }),
@@ -318,6 +324,36 @@ export function PortfolioContentView() {
             <label className="label">Resume URL</label>
             <input className="input mt-1" value={draft.profile.resumeUrl} onChange={(e) => updateProfileField("resumeUrl", e.target.value)} />
           </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          {draft.profile.photoUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={draft.profile.photoUrl} alt="Profile" className="h-16 w-16 rounded-full object-cover" />
+          )}
+          <label className="btn-ghost cursor-pointer text-xs">
+            {uploadingId === "profile-photo" ? "Uploading…" : draft.profile.photoUrl ? "Replace photo" : "Upload profile photo"}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              disabled={uploadingId === "profile-photo"}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                e.target.value = "";
+                if (file) uploadProfilePhoto(file);
+              }}
+            />
+          </label>
+          {draft.profile.photoUrl && (
+            <button
+              type="button"
+              className="text-xs text-danger hover:underline"
+              onClick={() => updateProfileField("photoUrl", undefined)}
+            >
+              Remove photo
+            </button>
+          )}
+          {uploadErrors["profile-photo"] && <span className="text-xs text-danger">{uploadErrors["profile-photo"]}</span>}
         </div>
       </section>
 

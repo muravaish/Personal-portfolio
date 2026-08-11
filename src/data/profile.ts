@@ -18,6 +18,7 @@ export interface ProfileBasics {
   email: string;
   socials: SocialLinks;
   resumeUrl: string;
+  photoUrl?: string;
 }
 
 export const profile: ProfileBasics = {

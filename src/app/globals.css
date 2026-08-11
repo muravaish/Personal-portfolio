@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Public site — warm, paper-toned, editorial. Deliberately not dark mode. */
-  --background: #f5efe1;
-  --surface: #fdfaf3;
-  --foreground: #241f18;
-  --muted: #7d7364;
-  --accent: #c9891f;
-  --accent-strong: #a8441c;
-  --accent-from: #e8622f;
-  --accent-to: #c98a1f;
-  --border: rgba(36, 31, 24, 0.12);
-  --overlay-soft: rgba(36, 31, 24, 0.035);
-  --overlay-soft-hover: rgba(36, 31, 24, 0.07);
-  --overlay-border-hover: rgba(36, 31, 24, 0.22);
-  --card-shadow: 0 1px 3px rgba(36, 31, 24, 0.06), 0 10px 28px -16px rgba(36, 31, 24, 0.12);
-  --selection-tint: rgba(168, 68, 28, 0.2);
+  /* Bold monochrome editorial — near-white/near-black base, one flat accent pop. */
+  --background: #f7f7f5;
+  --surface: #ffffff;
+  --foreground: #131313;
+  --muted: #6b6b68;
+  --accent: #c93d22;
+  --accent-strong: #e8472c;
+  --accent-from: #e8472c;
+  --accent-to: #e8472c;
+  --border: rgba(19, 19, 19, 0.14);
+  --overlay-soft: rgba(19, 19, 19, 0.035);
+  --overlay-soft-hover: rgba(19, 19, 19, 0.07);
+  --overlay-border-hover: rgba(19, 19, 19, 0.24);
+  --card-shadow: 0 1px 2px rgba(19, 19, 19, 0.05), 0 14px 34px -20px rgba(19, 19, 19, 0.18);
+  --selection-tint: rgba(232, 71, 44, 0.22);
   --danger: #b8382a;
   --warning: #a8681a;
   --success: #3f7a4a;
@@ -41,7 +41,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  background-image: radial-gradient(circle, rgba(36, 31, 24, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(19, 19, 19, 0.05) 1px, transparent 1px);
   background-size: 22px 22px;
   background-attachment: fixed;
 }
@@ -54,27 +54,26 @@ body {
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     box-shadow: var(--card-shadow);
   }
 
   .gradient-text {
-    background-image: linear-gradient(100deg, var(--accent-from), var(--accent-to));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--accent-strong);
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 0.4rem;
-    padding: 0.6rem 1.1rem;
-    font-weight: 600;
+    border-radius: 0.3rem;
+    padding: 0.65rem 1.2rem;
+    font-weight: 700;
     font-size: 0.875rem;
-    color: #241f18;
-    background-image: linear-gradient(100deg, var(--accent-from), var(--accent-to));
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fdf6f4;
+    background: var(--accent-strong);
     transition: opacity 0.15s ease, transform 0.15s ease;
   }
   .btn-primary:hover {
@@ -86,10 +85,12 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 0.4rem;
-    padding: 0.6rem 1.1rem;
-    font-weight: 600;
+    border-radius: 0.3rem;
+    padding: 0.65rem 1.2rem;
+    font-weight: 700;
     font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
     color: var(--foreground);
     border: 1px solid var(--border);
     background: var(--overlay-soft);
@@ -102,7 +103,7 @@ body {
 
   .input {
     width: 100%;
-    border-radius: 0.35rem;
+    border-radius: 0.3rem;
     border: 1px solid var(--border);
     background: var(--overlay-soft);
     padding: 0.55rem 0.75rem;
@@ -126,12 +127,24 @@ body {
   .badge {
     display: inline-flex;
     align-items: center;
-    border-radius: 0.3rem;
+    border-radius: 0.25rem;
     padding: 0.15rem 0.55rem;
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 500;
     border: 1px solid var(--border);
+  }
+
+  .watermark {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.8;
+    letter-spacing: -0.03em;
+    color: rgba(19, 19, 19, 0.045);
   }
 }
 
