@@ -20,6 +20,7 @@ export interface ProfileBasics {
   tagline: string;
   bio: string;
   email: string;
+  phone?: string;
   socials: SocialLinks;
   resumeUrl: string;
   photoUrl?: string;

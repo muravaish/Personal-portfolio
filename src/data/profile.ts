@@ -16,6 +16,7 @@ export interface ProfileBasics {
   tagline: string;
   bio: string;
   email: string;
+  phone?: string;
   socials: SocialLinks;
   resumeUrl: string;
   photoUrl?: string;
@@ -24,10 +25,11 @@ export interface ProfileBasics {
 export const profile: ProfileBasics = {
   "name": "Vaishmitha Muralitharan",
   "role": "Data Science Undergraduate",
-  "location": "Sri Lanka",
-  "tagline": "I turn data into decisions, ship projects, and track myself getting better at it.",
-  "bio": "Undergraduate specializing in Data Science, balancing coursework with hands-on projects and job-ready skill building. This site doubles as my personal command center — it tracks my university deadlines, plans my study/build time, logs my activity, and matches me against jobs that fit my skills.",
+  "location": "Kandy, Sri Lanka",
+  "tagline": "I build systems that turn messy data into decisions people act on — multi-agent analytics, churn modelling, recommendation engines.",
+  "bio": "I'm in my third year of BSc (Hons) Information Technology at SLIIT, specializing in Data Science. Most of what I know came from finishing projects: an autonomous analytics agent, a churn prediction and retention platform, a psychometric travel planner. I care about the part after the model — the dashboard a non-technical stakeholder can read, the recommendation that names a next step, the evaluation that proves the numbers are grounded.",
   "email": "vaishmitha.m@gmail.com",
+  "phone": "+94 77 658 5217",
   "socials": {
     "github": "https://github.com/muravaish",
     "linkedin": "https://www.linkedin.com/in/vaishmitha-muralitharan/",
@@ -48,16 +50,16 @@ export const heroStats: StatHighlight[] = [
     "value": "84.51%"
   },
   {
-    "label": "Forecast RMSE",
-    "value": "0.52°C"
-  },
-  {
     "label": "SQL Accuracy",
     "value": "27/30"
   },
   {
     "label": "Projects Shipped",
-    "value": "4"
+    "value": "6"
+  },
+  {
+    "label": "Certifications",
+    "value": "6"
   }
 ];
 
@@ -69,37 +71,27 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
   {
     "label": "Languages",
-    "skills": [
-      "Python",
-      "SQL",
-      "R",
-      "TypeScript"
-    ]
+    "skills": ["Python", "Java", "SQL", "R", "C"]
   },
   {
-    "label": "Data Science",
-    "skills": [
-      "Pandas",
-      "NumPy",
-      "scikit-learn",
-      "Machine Learning"
-    ]
+    "label": "Data Science & ML",
+    "skills": ["scikit-learn", "pandas", "NumPy", "Feature Engineering", "EDA", "Data Cleaning"]
   },
   {
-    "label": "Visualization",
-    "skills": [
-      "Matplotlib",
-      "Power BI",
-      "Tableau"
-    ]
+    "label": "Frameworks & Backend",
+    "skills": ["Spring Boot", "FastAPI", "Java Servlets", "React", "React Native"]
   },
   {
-    "label": "Tools",
-    "skills": [
-      "Jupyter",
-      "Git",
-      "PostgreSQL"
-    ]
+    "label": "Databases",
+    "skills": ["MongoDB Atlas", "NeonDB", "SQL Server (SSMS)", "PostgreSQL"]
+  },
+  {
+    "label": "Tools & Platforms",
+    "skills": ["Power BI", "Streamlit", "MLflow", "GitHub", "Google Colab", "VS Code", "IntelliJ IDEA"]
+  },
+  {
+    "label": "Practices",
+    "skills": ["REST API Design", "Agile / Scrum", "SDLC", "Team-Based Development"]
   }
 ];
 
@@ -130,24 +122,30 @@ export const certifications: Certification[] = [
   },
   {
     "id": "c6tabhy17wjmshv2muu",
-    "title": "Career Eseentials in Data Analysis",
+    "title": "Career Essentials in Data Analysis",
     "issuer": "Microsoft and LinkedIn",
     "date": "2026",
     "imageUrl": "/certifications/c6tabhy17wjmshv2muu.png"
   },
   {
     "id": "a0km6v1qas6mshv5iiu",
-    "title": "Oracle Certified Foundations Associate",
+    "title": "Oracle Cloud Infrastructure Certified AI Foundations Associate",
     "issuer": "Oracle",
     "date": "2026",
     "imageUrl": "/certifications/a0km6v1qas6mshv5iiu.png"
   },
   {
     "id": "j1junmxnqadmshv78fw",
-    "title": "Oracle Certified Foundations Associate",
+    "title": "Agentic AI Foundations Associate",
     "issuer": "Oracle",
     "date": "2026",
     "imageUrl": "/certifications/j1junmxnqadmshv78fw.png"
+  },
+  {
+    "id": "best-research-paper-dtechbiz-2026",
+    "title": "Best Research Paper Award — DTechBiz Research Symposium, Track 6",
+    "issuer": "DTechBiz Research Symposium",
+    "date": "2026"
   }
 ];
 
@@ -205,6 +203,22 @@ export const projects: Project[] = [
     ],
     "url": "https://autonomous-data-analyst-agent-8zsmr9ii5bsfxnshu37ykd.streamlit.app/",
     "repoUrl": "https://github.com/muravaish/autonomous-data-analyst-agent"
+  },
+  {
+    "id": "vibe-lanka-travel-planner",
+    "title": "Vibe Lanka — Psychometric Travel Planner",
+    "description": "A full-stack AI travel platform that generates personalized Sri Lanka itineraries from OCEAN personality profiles: archetype prediction, destination matching, hotel clustering, guide ranking, and route optimization across 5 ML workflows. Won Best Research Paper at the DTechBiz Research Symposium, Track 6.",
+    "tags": [
+      "React",
+      "Vite",
+      "Flask",
+      "PostgreSQL",
+      "KNN",
+      "K-Means",
+      "Random Forest",
+      "Thompson Sampling"
+    ],
+    "repoUrl": "https://github.com/muravaish/Vibe-Lanka"
   },
   {
     "id": "weather-trend-forecasting",

@@ -14,6 +14,11 @@ export function Contact() {
             <TechIcon name="gmail" />
             {profile.email}
           </a>
+          {profile.phone && (
+            <a href={`tel:${profile.phone.replace(/[\s]/g, "")}`} className="btn-ghost">
+              {profile.phone}
+            </a>
+          )}
           {profile.socials.github && (
             <a href={profile.socials.github} target="_blank" rel="noreferrer" className="btn-ghost">
               <TechIcon name="github" />

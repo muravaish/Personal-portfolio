@@ -296,6 +296,10 @@ export function PortfolioContentView() {
             <label className="label">Email</label>
             <input className="input mt-1" value={draft.profile.email} onChange={(e) => updateProfileField("email", e.target.value)} />
           </div>
+          <div>
+            <label className="label">Phone</label>
+            <input className="input mt-1" value={draft.profile.phone ?? ""} onChange={(e) => updateProfileField("phone", e.target.value)} />
+          </div>
           <div className="sm:col-span-2">
             <label className="label">Tagline</label>
             <input className="input mt-1" value={draft.profile.tagline} onChange={(e) => updateProfileField("tagline", e.target.value)} />
